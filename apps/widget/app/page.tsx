@@ -1,16 +1,18 @@
-import { Button } from "@workspace/ui/components/button"
 import { add } from "@workspace/math/add"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
 
 export default function Page() {
   return (
     <div className="flex min-h-svh p-6">
       <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
         <div>
-          <h1 className="font-medium">VELORA AI </h1>
+          <h1 className="font-medium">VELORA AI Widget</h1>
           <p>You may now add components and start building.</p>
           <p>We&apos;ve already added the button component for you.</p>
           <Button className="mt-2">Button</Button>
-          <p>{add(2, 2)}</p>
+          {add(6, 9)}
+          <Input />
         </div>
         <div className="text-muted-foreground font-mono text-xs">
           (Press <kbd>d</kbd> to toggle dark mode)

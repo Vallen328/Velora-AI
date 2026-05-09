@@ -1,0 +1,23 @@
+{
+  "name": "@workspace/math",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./add": {
+      "types": "./src/add.ts",
+      "default": "./dist/add.js"
+    },
+    "./subtract": {
+      "types": "./src/subtract.ts",
+      "default": "./dist/subtract.js"
+    }
+  },
+  "_comment": "The workspace:* protocol is specific to pnpm",
+  "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",     
+    "typescript": "latest"
+  }
+}
