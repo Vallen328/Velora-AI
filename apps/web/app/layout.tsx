@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "@workspace/ui/globals.css"
+import { ClerkProvider } from "@clerk/nextjs";
 import { Providers } from "@/components/Providers"
 import { cn } from "@workspace/ui/lib/utils";
 
@@ -22,7 +23,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}>
-        <Providers>{children}</Providers>
+        <ClerkProvider>
+          <Providers>
+            {children}
+          </Providers>
+        </ClerkProvider>
       </body>
     </html>
   )
