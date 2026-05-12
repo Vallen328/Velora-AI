@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}>
         <ClerkProvider>
           <Providers>
-            {children}
+              {children}
           </Providers>
         </ClerkProvider>
       </body>
