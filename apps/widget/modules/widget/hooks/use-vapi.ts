@@ -16,7 +16,7 @@ export const useVapi = () => {
     useEffect(() => {
         // Only for testing the VAPI API, otherwise customers will provide their own API keys.
         // Each customer has to add their own API keys, allowing them to create Agents of their own to create workflows of their own and phone numbers of their own making our app more flexible. For us learning is Whitelabeling the app.
-        const vapiInstance = new Vapi("1059cf03-84ea-41ae-8e6e-acf1dedd707b");
+        const vapiInstance = new Vapi("");
         setVapi(vapiInstance);
 
         vapiInstance.on("call-start", () => {
@@ -66,7 +66,7 @@ export const useVapi = () => {
         if(vapi){
             //Inside of start, Which AI assistant wants to be called needs to be defined.
             // Only for testing the VAPI API, otherwise customers will provide their own Assistant IDs.
-            vapi.start("b4cb36aa-00bd-46a4-9a74-487e074deab9");
+            vapi.start("");
         }
     }
 
