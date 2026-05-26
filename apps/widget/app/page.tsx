@@ -1,15 +1,17 @@
 import { WidgetView } from "@/modules/widget/ui/views/widget-view";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     organizationId?: string;
-  };
+  }>;
 }
 
-const Page = ({ searchParams }: Props) => {
+const Page = async ({ searchParams }: Props) => {
+  const params = await searchParams;
+
   return (
     <WidgetView
-      organizationId={searchParams.organizationId || ""}
+      organizationId={params.organizationId || ""}
     />
   );
 };
