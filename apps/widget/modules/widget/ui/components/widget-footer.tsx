@@ -23,7 +23,7 @@ export const WidgetFooter = () => {
                 variant = "ghost"
             >
                 <InboxIcon 
-                    className = {cn("size-5", screen === "inbox" && "text-primary")}  //For now we are hardcoding screen!
+                    className = {cn("size-5")}  //For now we are hardcoding screen!
                 />
             </Button>
         </footer>
