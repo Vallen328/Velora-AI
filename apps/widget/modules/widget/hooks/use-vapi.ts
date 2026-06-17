@@ -1,5 +1,7 @@
 import Vapi from "@vapi-ai/web";
+import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
+import { vapiSecretsAtom, widgetSettingsAtom } from "../atoms/widget-atoms";
 
 interface TranscriptMessage{
     role: "user" | "assistant";
@@ -7,6 +9,9 @@ interface TranscriptMessage{
 };
 
 export const useVapi = () => {
+    const vapiSecrets = useAtomValue(vapiSecretsAtom);
+    const widgetSettings = useAtomValue(widgetSettingsAtom);
+
     const [vapi, setVapi] = useState<Vapi | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const [isConnecting, setIsConnecting] = useState(false);
@@ -14,9 +19,11 @@ export const useVapi = () => {
     const [transcript, setTranscript] = useState<TranscriptMessage[]>([]);
 
     useEffect(() => {
-        // Only for testing the VAPI API, otherwise customers will provide their own API keys.
-        // Each customer has to add their own API keys, allowing them to create Agents of their own to create workflows of their own and phone numbers of their own making our app more flexible. For us learning is Whitelabeling the app.
-        const vapiInstance = new Vapi("");
+        if(!vapiSecrets){
+            return;
+        }
+
+        const vapiInstance = new Vapi(vapiSecrets.publicApiKey);
         setVapi(vapiInstance);
 
         vapiInstance.on("call-start", () => {
@@ -61,12 +68,13 @@ export const useVapi = () => {
     }, []);
 
     const startCall = () => {
+        if(!vapiSecrets || !widgetSettings?.vapiSettings?.assistantId){
+            return;
+        }
         setIsConnecting(true);
 
         if(vapi){
-            //Inside of start, Which AI assistant wants to be called needs to be defined.
-            // Only for testing the VAPI API, otherwise customers will provide their own Assistant IDs.
-            vapi.start("");
+            vapi.start(widgetSettings.vapiSettings.assistantId);
         }
     }
 
