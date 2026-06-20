@@ -53,6 +53,9 @@ importers:
       ai:
         specifier: 4.3.19
         version: 4.3.19(react@19.2.6)(zod@3.25.67)
+      bowser:
+        specifier: ^2.14.1
+        version: 2.14.1
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
