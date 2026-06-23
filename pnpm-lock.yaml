@@ -247,6 +247,9 @@ importers:
       convex-helpers:
         specifier: ^0.1.100
         version: 0.1.118(@standard-schema/spec@1.1.0)(convex@1.39.1(@clerk/clerk-react@5.61.8(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6))(react@19.2.6)(typescript@6.0.3)(zod@3.25.67)
+      svix:
+        specifier: ^1.96.0
+        version: 1.96.0
       zod:
         specifier: 3.25.67
         version: 3.25.67
@@ -5710,6 +5713,9 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  svix@1.96.0:
+    resolution: {integrity: sha512-bypvS7RhYYysD/AAnQzV7EIM08rP9aI394VPr2LGb63K17n4hYFfZPWCpFCFs7ZhYEfdO6Rtci16zxfw14ygCg==}
 
   swr@2.3.4:
     resolution: {integrity: sha512-bYd2lrhc+VarcpkgWclcUi92wYCpOgMws9Sd1hG1ntAu0NEy+14CbotuFjshBU2kt9rYj9TSmDcybpxpeTU1fg==}
@@ -11760,6 +11766,10 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  svix@1.96.0:
+    dependencies:
+      standardwebhooks: 1.0.0
 
   swr@2.3.4(react@19.2.6):
     dependencies:
