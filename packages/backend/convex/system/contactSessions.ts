@@ -1,14 +1,51 @@
-import { v } from "convex/values";
-import { internalQuery } from "../_generated/server";
+import { ConvexError, v } from "convex/values";
+import { internalMutation, internalQuery } from "../_generated/server";
+import { SESSION_DURATION_MS } from "../constants";
 
+const AUTO_REFRESH_THRESHOLD_MS = 4 * 60 * 60 * 1000;
 
-//internal Query is practically same thing as normal query API wise but it can only be called within other convex functions.
-//In here, I add something that u either want to use in actions because remember actions are not the same as mutations. Actions are separate runtime., so in order to access this convex database through an action, you are going to need to have internal query. Or if u want to protect something so it's not publicly available.
-export const getOne = internalQuery({
-    args: {
-        contactSessionId: v.id("contactSessions"),
-    },
-    handler: async (ctx, args) => {
-        return await ctx.db.get(args.contactSessionId);
+export const refresh = internalMutation({
+  args: {
+    contactSessionId: v.id("contactSessions"),
+  },
+  handler: async (ctx, args) => {
+    const contactSession = await ctx.db.get(args.contactSessionId);
+
+    if (!contactSession) {
+      throw new ConvexError({
+        code: "NOT_FOUND",
+        message: "Contact session not found",
+      });
     }
+
+    if (contactSession.expiresAt < Date.now()) {
+      throw new ConvexError({
+        code: "BAD_REQUEST",
+        message: "Contact session expired",
+      });
+    }
+
+    const timeRemaining = contactSession.expiresAt - Date.now();
+
+    if (timeRemaining < AUTO_REFRESH_THRESHOLD_MS) {
+      const newExpiresAt = Date.now() + SESSION_DURATION_MS;
+
+      await ctx.db.patch(args.contactSessionId, {
+        expiresAt: newExpiresAt,
+      });
+
+      return { ...contactSession, expiresAt: newExpiresAt };
+    }
+
+    return contactSession;
+  },
+});
+
+export const getOne = internalQuery({
+  args: {
+    contactSessionId: v.id("contactSessions"),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.contactSessionId);
+  },
 });
