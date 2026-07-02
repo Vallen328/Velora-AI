@@ -93,7 +93,7 @@ export const DashboardSidebar = () => {
                                         asChild
                                         isActive={isActive(item.url)}
                                         className={cn(
-                                            isActive(item.url) && "bg-gradient-to-b from-sidebar-primary to-[#0b63f3]! text-sidebar-primary-foreground! hover:to-[#0b63f3]/90!"
+                                            isActive(item.url) && "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90 shadow-sm"
                                         )}
                                         tooltip={item.title}
                                     >
@@ -119,7 +119,7 @@ export const DashboardSidebar = () => {
                                         asChild
                                         isActive={isActive(item.url)}
                                         className={cn(
-                                            isActive(item.url) && "bg-gradient-to-b from-sidebar-primary to-[#0b63f3]! text-sidebar-primary-foreground! hover:to-[#0b63f3]/90!"
+                                            isActive(item.url) && "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90 shadow-sm"
                                         )}
                                         tooltip={item.title}
                                     >
@@ -145,7 +145,7 @@ export const DashboardSidebar = () => {
                                         asChild
                                         isActive={isActive(item.url)}
                                         className={cn(
-                                            isActive(item.url) && "bg-gradient-to-b from-sidebar-primary to-[#0b63f3]! text-sidebar-primary-foreground! hover:to-[#0b63f3]/90!"
+                                            isActive(item.url) && "bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90 shadow-sm"
                                         )}
                                         tooltip={item.title}
                                     >
